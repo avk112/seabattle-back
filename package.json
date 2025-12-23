@@ -1,0 +1,29 @@
+{
+  "name": "seabattle-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "localhost": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.localhost",
+    "development": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.development",
+    "staging": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.staging",
+    "production": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.11",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "@types/socket.io": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
