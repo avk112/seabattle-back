@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
     "localhost": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.localhost",
-    "development": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.development",
-    "staging": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.staging",
-    "production": "nodemon -r dotenv/config src/index.ts dotenv_config_path=envs/.env.production",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
