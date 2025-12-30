@@ -200,6 +200,13 @@ io.on("connection", (socket: Socket) => {
     if (Object.keys(game?.players)?.length === 2) {
       game.status = "placing";
     }
+
+    const opponentId = Object.keys(game.players).find((item) => item !== socket.id);
+
+    if (opponentId) {
+      io.emit("opponentJoined");
+    }
+
     console.log("Client", socket.id, "joined room", roomId);
   });
 
@@ -218,8 +225,12 @@ io.on("connection", (socket: Socket) => {
     const onlinePlayersId = Object.keys(game?.players ?? []);
 
     if (onlinePlayersId?.length === 0) {
-      games.delete(roomId);
-      console.log("Room removed");
+      setTimeout(() => {
+        if (!Object.keys(game?.players ?? []).length) {
+          games.delete(roomId);
+          console.log("Room removed");
+        }
+      }, 3000);
     }
 
     if (onlinePlayersId?.length === 1) {
@@ -229,6 +240,7 @@ io.on("connection", (socket: Socket) => {
 
       games.set(roomId, newGame);
       io.to(opponentId).emit("initiateFields", { field: newGame.players[opponentId].field });
+      io.to(opponentId).emit("opponentDisconnected");
     }
   });
 
